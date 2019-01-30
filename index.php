@@ -14,7 +14,6 @@ define('BP', __DIR__ . '/');
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
-
 //set include path, this is where included classes will be found
 // PATH_SEPARATOR (; on windows, : otherwise)
 $includePaths = implode(PATH_SEPARATOR, array(

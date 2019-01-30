@@ -21,11 +21,9 @@ final class App
 
         $controller .= 'Controller';
 
-
         if(!class_exists($controller)) {
             $controller = 'IndexController';
         }
-
 
         //resolve action
         if (!isset($pathParts[1]) || empty($pathParts[1])) {
