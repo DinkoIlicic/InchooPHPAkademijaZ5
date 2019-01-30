@@ -30,13 +30,9 @@ spl_autoload_register(function ($class)
     // DIRECTORY_SEPARATOR ('/')
     // strtr ($string, $from, $to)
     $classPath = strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
-    $filePath = explode(PATH_SEPARATOR, get_include_path());
-    foreach($filePath as $dirPath){
-        $fullPathName = $dirPath . DIRECTORY_SEPARATOR . $classPath;
-        if(file_exists($fullPathName)) {
-            include $classPath;
-            break;
-        }
+    $foundFile = stream_resolve_include_path($classPath);
+    if($foundFile !== FALSE){
+        include $classPath;
     }
 });
 
