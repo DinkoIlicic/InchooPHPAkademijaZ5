@@ -31,7 +31,10 @@ spl_autoload_register(function ($class)
     // DIRECTORY_SEPARATOR ('/')
     // strtr ($string, $from, $to)
     $classPath = strtr($class, '\\', DIRECTORY_SEPARATOR) . '.php';
-    return include $classPath;
+    if(file_exists("app/model/".$classPath) || file_exists("app/controller/".$classPath)) {
+        include $classPath;
+    }
 });
+
 //start app
-App::start();?>
+App::start();

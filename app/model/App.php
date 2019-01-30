@@ -21,6 +21,12 @@ final class App
 
         $controller .= 'Controller';
 
+
+        if(!class_exists($controller)) {
+            $controller = 'IndexController';
+        }
+
+
         //resolve action
         if (!isset($pathParts[1]) || empty($pathParts[1])) {
             $action = 'index';
@@ -33,7 +39,8 @@ final class App
             $controllerInstance = new $controller();
             $controllerInstance->$action();
         } else {
-            header("HTTP/1.0 404 Not Found");
+            $view = new View();
+            $view->render('404');
         }
     }
 }
